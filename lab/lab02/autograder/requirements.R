@@ -1,0 +1,3 @@
+install.packages("magick", deps=TRUE, repos="https://cran.r-project.org", configure.vars='INCLUDE_DIR="/usr/include/ImageMagick-6 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -fopenmp -DMAGICKCORE_HDRI_ENABLE=0 -DMAGICKCORE_QUANTUM_DEPTH=16 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6 -I/usr/include/x86_64-linux-gnu//ImageMagick-6 -I/usr/include/ImageMagick-6" LIB_DIR="/usr/lib/x86_64-linux-gnu -lMagick++-6.Q16 -lMagickWand-6.Q16 -lMagickCore-6.Q16"')
+
+install.packages(c("dplyr", "readr", "ggplot2", "broom", "forcats"), repos="https://cran.r-project.org")
