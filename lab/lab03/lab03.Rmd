@@ -6,7 +6,7 @@ output: pdf_document
 ---
 
 ### Instructions 
-* Due date: Saturday, February 13th by 12:00PM noon PST.
+* Due date: Tuesday, July 15, by 10:00PM noon PST.
 * Late penalty: 50% late penalty if submitted within 24 hours of due date, no marks for assignments submitted thereafter.
 * This assignment is graded on **correct completion**, all or nothing. You must pass all public tests and submit the assignment for credit.
 * Submission process: Follow the submission instructions on the final page. Make sure you do not remove any `\newpage` tags or rename this file, as this will break the submission.
