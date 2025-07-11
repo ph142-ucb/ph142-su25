@@ -6,7 +6,7 @@ output: pdf_document
 ---
 
 ### Instructions 
-* Due date: Tuesday, July 15, by 10:00PM noon PST.
+* Due date: Tuesday, July 15th by 10:00pm PT with 2 hour grace period.
 * Late penalty: 50% late penalty if submitted within 24 hours of due date, no marks for assignments submitted thereafter.
 * This assignment is graded on **correct completion**, all or nothing. You must pass all public tests and submit the assignment for credit.
 * Submission process: Follow the submission instructions on the final page. Make sure you do not remove any `\newpage` tags or rename this file, as this will break the submission.
@@ -36,7 +36,7 @@ CS_data <- CS_data %>% mutate(CS_rate_100 = CS_rate*100)
 
 \newpage 
 
-**1. [1 point] Make a scatter plot between `CS_rate_100` and `GDP_2006`.**
+**1. [1 point] Make a scatter plot between `GDP_2006` on the x-axis and `CS_rate_100` on the y-axis.**
 
 ```{r scatterplot}
 p1 <- NULL # YOUR CODE HERE
@@ -105,9 +105,7 @@ p6
 . = ottr::check("tests/p6.R")
 ```
 
-**6b. [1 point] Does a linear relationship hold for any part of the data? What pattern do you notice?**
-
-_Type your answer here, replacing this text._
+Does a linear relationship hold for any part of the data? What pattern do you notice?
 
 \newpage
 
@@ -173,10 +171,10 @@ Once you have checked these items, you can proceed to submit your assignment.
 1. Click on the **Terminal** tab in the pane below.
 2. Copy-paste the following line of code into the terminal and press enter.
 
-cd; cd ph142-sp25/lab/lab03; python3.11 turn_in.py
+cd; cd ph142-su25/lab/lab03; python3 turn_in.py
 
 3. Follow the prompts to enter your Gradescope username and password.
-4. If the submission is successful, you should see "Submission successful!" appear as the output. **Check your submission on the Gradescope website to ensure that the autograder worked properly and you received credit for your correct answers. If you think the autograder is incorrectly grading your work, please post on piazza!**
-5. If the submission fails, try to diagnose the issue using the error messages--if you have problems, post on ed under the Lab 03 Thread.
+4. If the submission is successful, you should see "Submission successful!" appear as the output. **Check your submission on the Gradescope website to ensure that the autograder worked properly and you received credit for your correct answers. If you think the autograder is incorrectly grading your work, please post on Ed!**
+5. If the submission fails, try to diagnose the issue using the error messages--if you have problems, post on Piazza under the post "Datahub Issues".
 
 The late policy will be strictly enforced, **no matter the reason**, including submission issues, so be sure to submit early enough to have time to diagnose issues if problems arise.
