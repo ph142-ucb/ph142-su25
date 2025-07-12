@@ -12,7 +12,6 @@ library(testthat)
 ```
 
 ### Instructions 
-* Solutions will be released by Sunday, February 9th.
 * This semester, homework assignments are for practice only and will not be turned in for marks.
 
 Helpful hints:
