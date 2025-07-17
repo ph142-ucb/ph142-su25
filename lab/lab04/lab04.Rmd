@@ -144,7 +144,7 @@ If you prefer, you can do these calculations by hand. Some students might wish t
 
 You could consider using the `uncount()` function to expand the data based upon the numbers in each group (i.e., `n`) and assign the expanded data frame to a new name. Then, you can use the `tabyl` function from the `janitor` package to create stratified two-way tables, and the relevant `adorn_` functions from `janitor` to convert the frequencies to percentages.
 
-_Type your answer here, replacing this text._
+
 
 ```{r}
 # Try using uncount() and tabyl() here!
