@@ -7,27 +7,13 @@ test = list(
       points = 1.0,
       code = {
         test_that("p8a", {
-          expect_true("ggplot" %in% class(p8))
-          print("Checking: p8 is a ggplot")
-  
+          expect_true(p8 > 0 & p8 < 1)
+          print("Checking: range of p8")
         })
 
         test_that("p8b", {
-          expect_true(identical(p8$data, anorexia_diff))
-          print("Checking: Using `anorexia_diff` data")
-  
-        })
-
-        test_that("p8c", {
-          expect_true(quo_get_expr(p8$mapping$sample) == "diff")
-          print("Checking: Looking at the distribution of `diff`")
-  
-        })
-
-        test_that("p8d", {
-          expect_true("StatQqLine" %in% class(p8$layers[[2]]$stat))
-          print("Checking: Using a QQplot")
-  
+          expect_true(all.equal(p8, 0.003345965, tol = 0.001))
+          print("Checking: value of p8")
         })
       }
     )
