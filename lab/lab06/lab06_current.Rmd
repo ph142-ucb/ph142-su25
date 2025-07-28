@@ -13,9 +13,7 @@ library(rlang)
 ```
 
 ### Instructions
-* Due date: Tuesday, July 29th at 10:00 pm PST with a 2 hour grace period.
-* Late penalty: 50% late penalty if submitted within 24 hours of due date, no 
-marks for assignments submitted thereafter.
+* Due date: Tuesday, July 29th at 10:00 pm with a 2 hour grace period.
 * This assignment is graded on **correct completion**, all or nothing. You must pass all public tests and submit the assignment for credit.
 * Submission process: Follow the submission instructions on the final page. Make sure you do not remove any `\newpage` tags or rename this file, as this will break the submission. 
 
@@ -131,6 +129,8 @@ p8
 # YOUR CODE HERE
 ```
 
+_Type your answer here, replacing this text._
+
 ```{r}
 . = ottr::check("tests/p8.R")
 ```
@@ -184,6 +184,8 @@ p12
 
 # YOUR CODE HERE
 ```
+
+_Type your answer here, replacing this text._
 
 ```{r}
 . = ottr::check("tests/p12.R")
@@ -345,12 +347,3 @@ cd; cd ph142-su25/lab/lab06; python3 turn_in.py
 5. If the submission fails, try to diagnose the issue using the error messages--if you have problems, post on Ed 
 
 The late policy will be strictly enforced, **no matter the reason**, including submission issues, so be sure to submit early enough to have time to diagnose issues if problems arise.
-
-## Submission
-
-Make sure you have run all cells in your notebook in order before running the cell below, so that all images/graphs appear in the output. The cell below will generate a zip file for you to submit. **Please save before exporting!**
-
-```{r}
-# Save your notebook first, then run this cell to export your submission.
-ottr::export("lab06_current.Rmd", pdf = TRUE)
-```
