@@ -7,13 +7,15 @@ test = list(
       points = 1.0,
       code = {
         test_that("p10a", {
-          expect_true(p10 > 0 & p10 < 1)
-          print("Checking: range of p10")
+          expect_true(between(p10, 10, 11))
+          print("Checking: p10 is a value between 10 and 11")
+  
         })
 
         test_that("p10b", {
-          expect_true(all.equal(p10,  0.005921731, tol = 0.001))
-          print("Checking: value of p10")
+          expect_true(all.equal(p10, qnorm(p = .90, mean = 2, sd = 7), tol = 0.01))
+          print("Checking: p10 is the correct number of pounds")
+  
         })
       }
     )
