@@ -13,8 +13,7 @@ library(testthat)
 
 ### Instructions 
 * Due date: Thursday, August 7th at 10:00pm PST with 2 hour grace period.
-* Late penalty: 50% late penalty if submitted within 24 hours of due date, no 
-marks for assignments submitted thereafter.
+* Late penalty: 50% late penalty if submitted within 24 hours of due date, no marks for assignments submitted thereafter.
 * This assignment is graded on **correct completion**, all or nothing. You must pass all public tests and submit the assignment for credit.
 * Submission process: Follow the submission instructions on the final page. Make sure you do not remove any `\newpage` tags or rename this file, as this will break the submission.
 
@@ -39,210 +38,76 @@ nhanes <- na.omit(nhanes) # this code skip rows with missing values
 
 **1. [1 point] We are interested in looking at the systolic blood pressure, `bpxsy`, by history of smoking, `hs`. Start by generating an appropriate box plot to look at these data.**
 
-```
-BEGIN QUESTION
-name: p1
-manual: false
-points: 1
-```
-
-```{r}
-. = " # BEGIN PROMPT
+```{r tags=c()}
 plot1 <- NULL # YOUR CODE HERE
 plot1
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-plot1 <- ggplot(nhanes, aes(x = hs, y = bpxsy1)) + 
-  geom_boxplot() 
-plot1
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("ggplot" %in% class(plot1))
-```
-
-```{r}
-## Test ##
-expect_true(identical(plot1$data, nhanes))
-```
-
-```{r}
-## Test ##
-expect_true(rlang::quo_get_expr(plot1$mapping$x) == "hs")
-```
-
-```{r}
-## Test ##
-expect_true(rlang::quo_get_expr(plot1$mapping$y) == "bpxsy1")
-```
-
-```{r}
-## Test ##
-expect_true("GeomBoxplot" %in% class(plot1$layers[[1]]$geom))
+. = ottr::check("tests/p1.R")
 ```
 
 \newpage
 
 **2. [1 point] Now generate a set of faceted histograms that show the same data.**
 
-```
-BEGIN QUESTION
-name: p2
-manual: false
-points: 1
-```
-
-```{r hist, echo=TRUE}
-. = " # BEGIN PROMPT
+```{r hist, echo=TRUE, tags=c()}
 plot2 <- NULL # YOUR CODE HERE
 plot2
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-plot2 <- ggplot(nhanes, aes(x = bpxsy1)) +
-  geom_histogram(aes(fill = hs), col = "black") +
-  facet_wrap(hs~.)
-plot2
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("ggplot" %in% class(plot2))
-```
-
-```{r}
-## Test ##
-expect_true(identical(plot2$data, nhanes))
-```
-
-```{r}
-## Test ##
-expect_true(rlang::quo_get_expr(plot2$mapping$x) == "bpxsy1")
-```
-
-```{r}
-## Test ##
-expect_true("FacetGrid" %in% class(plot2$facet) | "FacetWrap" %in% class(plot2$facet))
+. = ottr::check("tests/p2.R")
 ```
 
 \newpage
 
 **3. [1 point] Summarize the means and standard deviations of the systolic blood pressurea for each category of `hs`. Assign `p3` to a dataframe with the mean systolic blood pressures assigned to `mean_bp` and the standard deviations assigned to `sd_bp`.**
 
-```
-BEGIN QUESTION
-name: p3
-manual: false
-points: 1
-```
-
-```{r hist2, echo=TRUE}
-. = " # BEGIN PROMPT
+```{r hist2, echo=TRUE, tags=c()}
 p3 <- NULL # YOUR CODE HERE
 p3
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-p3 <- nhanes %>% group_by(hs) %>% summarise(mean_bp =mean(bpxsy1),
-                                            sd_bp = sd(bpxsy1)) 
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("data.frame" %in% class(p3))
-```
-
-```{r}
-## Test ##
-expect_true(nrow(p3) == 2)
-```
-
-```{r}
-## Test ##
-expect_true(ncol(p3) == 3)
+. = ottr::check("tests/p3.R")
 ```
 
 \newpage
 
 **4. Do we meet the all of the assumptions to run a two-sample t-test? Why or why not?**
 
-```
-BEGIN QUESTION
-name: p4
-manual: true
-```
-
-<!-- BEGIN SOLUTION -->
-The assumptions to run the two-sample t test are that the observations are independent and the shape of each sample is normally distributed with an unknown population mean and sd. The assumptions hold here as we are looking at a large cohort study and we can assume each participant is independent. This may not hold if multiple participants came from the same household and thus affected their smoking history and blood pressure. The shapes of the data are normal and we do not know the population mean and SD.
-<!-- END SOLUTION -->
+_Type your answer here, replacing this text._
 
 \newpage
 
 **5. State the null and alternative hypotheses in the context of this question.**
 
-```
-BEGIN QUESTION
-name: p5
-manual: true
-```
-
-<!-- BEGIN SOLUTION -->
-$H_0$ = The mean of blood pressure for those with a history of smoking is the same for those without a smoking history. $\mu_s$ = $\mu_n$.
-
-$H_A$ = The mean of blood pressure for those without a history of smoking is different than those without a smoking history. $\mu_s$ $\neq$ $\mu_n$.
-<!-- END SOLUTION -->
+_Type your answer here, replacing this text._
 
 \newpage
 
 **6. [1 point] Use an R function to test if the variability gives enough evidence to reject the null hypothesis of no difference between mean blood pressure by smoking history.**
 
-```
-BEGIN QUESTION
-name: p6
-manual: false
-points: 1
-```
-
-```{r echo=TRUE}
-. = " # BEGIN PROMPT
+```{r echo=TRUE, tags=c()}
 p6 <- NULL # YOUR CODE HERE
 p6
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-p6 <- t.test(bpxsy1 ~ hs, data = nhanes) # SOLUTION
-p6
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("htest" %in% class(p6))
-```
-
-```{r}
-## Test ##
-expect_true(all.equal(unname(p6$statistic), 0.2309, 0.001))
+. = ottr::check("tests/p6.R")
 ```
 
 \newpage
 
 **7. Use these results to interpret your p-value in the context of this question. Do you reject or fail to reject the null hypothesis?**
 
-```
-BEGIN QUESTION
-name: p7
-manual: true
-```
 
-<!-- BEGIN SOLUTION -->
-Under the null hypothesis, there is a 81.74% chance of seeing a difference of at least 0.2512. Therefore, we fail to reject the null hypothesis that the true difference in means for those with a history of smoking or not is 0.
-<!-- END SOLUTION -->
+_Type your answer here, replacing this text._
 
 \newpage
 
@@ -250,15 +115,7 @@ Repeat your analysis above without using the `t.test()` function.
 
 **8. [1 point] First calculate the test statistic by hand. Do not round and assign this value to `t_stat`.**
 
-```
-BEGIN QUESTION
-name: p8
-manual: false
-points: 1
-```
-
-```{r}
-. = " # BEGIN PROMPT
+```{r tags=c()}
 # this code gives you the number of smokers in the dataset
 n_s <- nrow(nhanes %>% filter(hs == 'History of smoking'))
 n_s
@@ -270,99 +127,42 @@ n_ns
 # calculate your test statistic. You can make more objects if you wish.
 t_stat <- NULL # YOUR CODE HERE
 t_stat
-" # END PROMPT
 
 
-# BEGIN SOLUTION NO PROMPT
-se <- sqrt((18.56617^2/619) + (18.71515^2/559))
-t_stat <- 0.2512/se
-t_stat
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true(all.equal(t_stat, 0.2309, 0.001))
+. = ottr::check("tests/p8.R")
 ```
 
 **9. [1 point] Now compare your test statistic to a t-distribution with df = 558 and calculate the p-value. This is an approximation using the smaller of the two sample sizes - 1.**
 
-```
-BEGIN QUESTION
-name: p9
-manual: false
-points: 1
-```
-
-```{r echo=TRUE}
-. = " # BEGIN PROMPT
+```{r echo=TRUE, tags=c()}
 
 p_value <- NULL # YOUR CODE HERE
 p_value
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-p_value <- pt(t_stat, df = 558, lower.tail = F) * 2
-p_value
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true(p_value < 1 & p_value > 0)
-```
-
-```{r}
-## Test ##
-expect_true(all.equal(p_value, 0.8174, tol = 0.001))
+. = ottr::check("tests/p9.R")
 ```
 
 \newpage
 
 **10. [1 point] Finally, construct a 99% confidence interval for these data. Interpret the interval in the context of this question and decide whether or not to reject the null hypothesis.**
 
-```
-BEGIN QUESTION
-name: p10
-manual: false
-points: 1
-```
-
-```{r}
-. = " # BEGIN PROMPT
+```{r tags=c()}
 lowerbound <- NULL # YOUR CODE HERE
 upperbound <- NULL # YOUR CODE HERE
 conf_int <- c(lowerbound, upperbound)
 conf_int
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-critical_val <- qt(p = 0.995, df = 558)
-lowerbound <- 0.2512 - critical_val*se 
-upperbound <- 0.2512 + critical_val*se
-conf_int <- c(lowerbound, upperbound)
-conf_int
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true(conf_int[1] < conf_int[2])
+. = ottr::check("tests/p10.R")
 ```
-
-```{r}
-## Test ##
-expect_true(all.equal(conf_int[1], -2.560568, tol = 0.001))
-```
-
-```{r}
-## Test ##
-expect_true(all.equal(conf_int[2], 3.062968, tol = 0.001))
-```
-
-<!-- BEGIN SOLUTION -->
-If our assumptions hold and we were to repeat this process 100 times, 99 of them would contain the true value of the difference in population means. This confidence interval is (-2.58, 3.04) which contains 0 and thus we fail to reject the null hypothesis of no difference in mean blood pressure in smokers vs non-smokers.
-<!-- END SOLUTION -->
 
 \newpage
 
@@ -370,212 +170,71 @@ If our assumptions hold and we were to repeat this process 100 times, 99 of them
 
 **11. [1 point] We are interested in looking at the systolic blood pressure, `bpxsy1`, by BMI category, `bmicat`. Generate an appropriate box plot to visualize these data.**
 
-```
-BEGIN QUESTION
-name: p11
-manual: false
-points: 1
-```
-
-```{r}
-. = " # BEGIN PROMPT
+```{r tags=c()}
 plot11 <- NULL # YOUR CODE HERE
 plot11
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-plot11 <- ggplot(data = nhanes, aes(x = bmicat, y = bpxsy1)) + geom_boxplot() # SOLUTION
-plot11
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("ggplot" %in% class(plot11))
-```
-
-```{r}
-## Test ##
-expect_true(identical(plot11$data, nhanes))
-```
-
-```{r}
-## Test ##
-expect_true(rlang::quo_get_expr(plot11$mapping$x) == "bmicat")
-```
-
-```{r}
-## Test ##
-expect_true(rlang::quo_get_expr(plot11$mapping$y) == "bpxsy1")
-```
-
-```{r}
-## Test ##
-expect_true("GeomBoxplot" %in% class(plot11$layers[[1]]$geom))
+. = ottr::check("tests/p11.R")
 ```
 
 \newpage
 
 **12. [1 point] Now generate a set of faceted histograms that show the same data. It might be useful to assign a fill color to each category.**
 
-```
-BEGIN QUESTION
-name: p12
-manual: false
-points: 1
-```
-
-```{r hist-aov, echo=TRUE}
-. = " # BEGIN PROMPT
+```{r hist-aov, echo=TRUE, tags=c()}
 plot12 <- NULL # YOUR CODE HERE
 plot12
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-plot12 <- ggplot(data = nhanes, aes(x = bpxsy1)) +
-  geom_histogram(aes(fill = bmicat), col = "black",
-                 position = "stack") + facet_wrap(bmicat~.)
-plot12
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("ggplot" %in% class(plot12))
-```
-
-```{r}
-## Test ##
-expect_true(identical(plot12$data, nhanes))
-```
-
-```{r}
-## Test ##
-expect_true(rlang::quo_get_expr(plot12$mapping$x) == "bpxsy1")
-```
-
-```{r}
-## Test ##
-expect_true("FacetGrid" %in% class(plot12$facet) | "FacetWrap" %in% class(plot12$facet))
+. = ottr::check("tests/p12.R")
 ```
 
 \newpage
 
 **13. [1 point] Summarize the means and standard deviations of the outcome for each BMI category. Assign `p13` to a dataframe with the mean systolic blood pressure assigned to `mean_bp` and the standard deviation assigned to `sd_bp`.**
 
-```
-BEGIN QUESTION
-name: p13
-manual: false
-points: 1
-```
-
-```{r hist2-aov, echo=TRUE}
-. = " # BEGIN PROMPT
+```{r hist2-aov, echo=TRUE, tags=c()}
 p13 <- NULL # YOUR CODE HERE
 p13
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-p13 <- nhanes %>% group_by(bmicat) %>% summarize(mean_bp = mean(bpxsy1),
-                                                 sd_bp = sd(bpxsy1))
-p13
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("data.frame" %in% class(p13))
-```
-
-```{r}
-## Test ##
-expect_true(nrow(p13) == 5)
-```
-
-```{r}
-## Test ##
-expect_true(ncol(p13) == 3)
+. = ottr::check("tests/p13.R")
 ```
 
 \newpage
 
 **14. [1 point] Use an R function to test whether there is evidence to reject the null hypothesis of no difference between mean blood pressure by BMI category.**
 
-```
-BEGIN QUESTION
-name: p14
-manual: false
-points: 1
-```
-
-```{r echo=TRUE}
-. = " # BEGIN PROMPT
+```{r echo=TRUE, tags=c()}
 p14 <- NULL # YOUR CODE HERE
 tidy(p14) # tidy displays your output. It lives in the `broom` package
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-p14 <- aov(bpxsy1 ~ bmicat, data = nhanes)
-tidy(p14)
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("aov" %in% class(p14))
-```
-
-```{r}
-## Test ##
-expect_true(p14$terms[[2]] == "bpxsy1")
-```
-
-```{r}
-## Test ##
-expect_true(p14$terms[[3]] == "bmicat")
-```
-```{r}
-## Test ##
-expect_true(all.equal(unname(p14$coefficients[2]), -2.088294, tol = 0.001))
+. = ottr::check("tests/p14.R")
 ```
 
 \newpage
 
 **15. [1 point] Conduct a Tukey's HSD test using these data. What can you conclude assuming a standard error rate of 5%?**
 
-```
-BEGIN QUESTION
-name: p15
-manual: false
-points: 1
-```
-
-```{r echo=TRUE}
-. = " # BEGIN PROMPT
+```{r echo=TRUE, tags=c()}
 p15 <- NULL # YOUR CODE HERE
 tidy(p15) 
-" # END PROMPT
 
-# BEGIN SOLUTION NO PROMPT
-p15 <- TukeyHSD(p14) # SOLUTION
-tidy(p15)
-# END SOLUTION
 ```
 
 ```{r}
-## Test ##
-expect_true("TukeyHSD" %in% class(p15))
+. = ottr::check("tests/p15.R")
 ```
-
-```{r}
-## Test ##
-expect_true(all.equal(p15$bmicat[1,4], 0.8833041, tol = 0.001))
-```
-
-<!-- BEGIN SOLUTION -->
-All of the pairwise comparisons contain 0 so we can conclude the variability in the means of blood pressure is no difference between bmi categories
-<!-- END SOLUTION -->
 
 \newpage
 
@@ -595,7 +254,7 @@ Once you have checked these items, you can proceed to submit your assignment.
 cd; cd ph142-su25/lab/lab09; python3 turn_in.py
 
 3. Follow the prompts to enter your Gradescope username and password.
-4. If the submission is successful, you should see "Submission successful!" appear as the output. **Check your submission on the Gradescope website to ensure that the autograder worked properly and you received credit for your correct answers. If you think the autograder is incorrectly grading your work, please post on piazza!**
-5. If the submission fails, try to diagnose the issue using the error messages--if you have problems, post on Piazza under the post "Datahub Issues".
+4. If the submission is successful, you should see "Submission successful!" appear as the output. **Check your submission on the Gradescope website to ensure that the autograder worked properly and you received credit for your correct answers. If you think the autograder is incorrectly grading your work, please post on Ed!**
+5. If the submission fails, try to diagnose the issue using the error messages--if you have problems, post on Ed under the post "Datahub Issues".
 
 The late policy will be strictly enforced, **no matter the reason**, including submission issues, so be sure to submit early enough to have time to diagnose issues if problems arise.
